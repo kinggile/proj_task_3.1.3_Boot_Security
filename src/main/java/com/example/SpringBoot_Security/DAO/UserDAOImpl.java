@@ -23,7 +23,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getOneUser(int id) {
+    public User getOneUser(Long id) {
         return entityManager.find(User.class, id);
     }
 
@@ -34,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         entityManager.createQuery("delete from User where id = :id")
                 .setParameter("id", id)
                 .executeUpdate();
