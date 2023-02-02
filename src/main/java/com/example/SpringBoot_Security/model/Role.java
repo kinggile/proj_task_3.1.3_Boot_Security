@@ -9,8 +9,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -26,8 +26,18 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    public Role(Long id) {
+        this.id = id;
+    }
+
+    public Role(Long id, String role) {
+        this.id = id;
+        this.role = role;
+    }
+
     @Override
     public String getAuthority() {
-        return role;
+        return getRole(); // todo или нужно добавить getName()
     }
+
 }
