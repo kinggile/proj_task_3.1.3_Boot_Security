@@ -1,4 +1,4 @@
-package com.example.SpringBoot_Secutiry.configs;
+package com.example.SpringBoot_Secutiry.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
