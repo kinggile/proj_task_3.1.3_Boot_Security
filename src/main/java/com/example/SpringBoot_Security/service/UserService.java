@@ -1,21 +1,41 @@
 package com.example.SpringBoot_Security.service;
 
-
-
 import com.example.SpringBoot_Security.model.User;
+import com.example.SpringBoot_Security.repository.RoleRepository;
+import com.example.SpringBoot_Security.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public interface UserService {
+@Service
+public class UserService implements UserDetailsService {
 
-    List<User> getAllUsers();
+    @PersistenceContext
+    private EntityManager entityManager;
 
-    void save(User user);
+    @Autowired
+    UserRepository userRepository;
 
-    User getOneUser(Long id);
+    @Autowired
+    RoleRepository roleRepository;
 
-    public void updateUser(User user);
+//    @Autowired
+//    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    void deleteUser(Long id);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
 
+        if (user == null) {
+            throw new UsernameNotFoundException("User '%s' not found");
+        }
+
+        return user;
+    }
 }
