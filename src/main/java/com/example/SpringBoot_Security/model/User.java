@@ -1,4 +1,4 @@
-package com.example.SpringBoot_Secutiry.model;
+package com.example.SpringBoot_Security.model;
 
 import javax.persistence.*;
 

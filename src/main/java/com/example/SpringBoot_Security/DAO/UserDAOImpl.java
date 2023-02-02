@@ -1,6 +1,6 @@
-package com.example.SpringBoot_Secutiry.DAO;
+package com.example.SpringBoot_Security.DAO;
 
-import com.example.SpringBoot_Secutiry.model.User;
+import com.example.SpringBoot_Security.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

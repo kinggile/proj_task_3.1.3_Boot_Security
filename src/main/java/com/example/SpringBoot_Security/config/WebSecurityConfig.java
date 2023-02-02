@@ -1,4 +1,4 @@
-package com.example.SpringBoot_Secutiry.config;
+package com.example.SpringBoot_Security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
