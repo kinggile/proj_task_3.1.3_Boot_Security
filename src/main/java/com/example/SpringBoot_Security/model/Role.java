@@ -26,6 +26,7 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    // todo возможно не понадобятся конструкторы ниже
     public Role(Long id) {
         this.id = id;
     }
@@ -40,4 +41,16 @@ public class Role implements GrantedAuthority {
         return getRole(); // todo или нужно добавить getName()
     }
 
+
+    @Override
+    public String toString() {
+        return this.role;
+    }
+
+    // todo переопределение equals hashCode?
+
+    /*
+    And equals() and hashCode() must be overridden so Spring MVC and Thymeleaf will show the check marks
+     correctly when the form is in edit mode.
+     */
 }

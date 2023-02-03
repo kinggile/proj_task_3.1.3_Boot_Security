@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 // TODO возможно выйдет ошибка в ManyToMany из-за (fetch = ...) и ломбок @getter
@@ -31,13 +32,14 @@ public class User implements UserDetails {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToMany() // todo возможно нужно будет использовать cascade
+    // by default @ManyToMany uses lazy
+    @ManyToMany(fetch = FetchType.LAZY) // todo возможно нужно будет использовать cascade
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>(); // todo возможно не нужна инициализация hashset
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
