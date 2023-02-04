@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin")
 public class UserController {
 
     private final UserService userService;
@@ -36,11 +36,11 @@ public class UserController {
         return "pages/newUser";
     }
 
-    @PostMapping("/new")
+    @PostMapping()
     public String createNewUser(@ModelAttribute("user") User user) {
         userService.save(user);
 
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/edit/{id}")
@@ -52,12 +52,12 @@ public class UserController {
     @PatchMapping("/edit/{id}")
     public String editUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 }

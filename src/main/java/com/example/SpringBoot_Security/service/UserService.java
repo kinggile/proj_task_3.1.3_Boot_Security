@@ -12,7 +12,7 @@ public interface UserService extends UserDetailsService {
 
     void save(User user);
 
-    Optional<User> getOneUser(Long id);
+    User getOneUser(Long id);
 
     void updateUser(User user);
 

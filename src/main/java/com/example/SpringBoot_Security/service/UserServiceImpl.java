@@ -41,8 +41,9 @@ public class UserServiceImpl implements UserService {
 
     // todo возможно нужно будет поменять сигнатуру метода (убрать optional)
     @Override
-    public Optional<User> getOneUser(Long id) {
-        return userRepository.findById(id);
+    public User getOneUser(Long id) {
+        Optional<User> foundUser = userRepository.findById(id);
+        return foundUser.orElse(null);
     }
 
     // todo возможно неправильно реализовал метод
