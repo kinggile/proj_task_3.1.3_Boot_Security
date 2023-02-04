@@ -3,6 +3,10 @@ package com.example.SpringBoot_Security.controller;
 import com.example.SpringBoot_Security.repository.UserRepository;
 import com.example.SpringBoot_Security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +30,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public String info(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
+    public String info(Model model, Principal principal) {
+        model.addAttribute("user", userService.findByUsername(principal.getName()));
         return "user/userInfo";
     }
 }
