@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// todo возможно, нужно убрать аннотацию над классом
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
@@ -40,14 +39,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    // todo возможно нужно будет поменять сигнатуру метода (убрать optional)
     @Override
     public User getOneUser(Long id) {
         Optional<User> foundUser = userRepository.findById(id);
         return foundUser.orElse(null);
     }
 
-    // todo возможно неправильно реализовал метод
     @Override
     @Transactional
     public void updateUser(User user) {
