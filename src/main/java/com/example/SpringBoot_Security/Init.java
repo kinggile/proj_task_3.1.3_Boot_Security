@@ -37,9 +37,9 @@ public class Init {
 
 
         User admin = new User("admin", "$2a$12$x2jGJqzzWh7mp1c4bNW/MePnpkb5Q.garsy0PN9cmK3Ja0UQ3N432",
-                "admin@mail.ru", setAdminRole());
+                "admin@mail.ru", setAdminRole()); // pass = admin
         User user = new User("user", "$2a$12$AyaqSH0/6oYd6yBC2sKfgutia.m2Cz//roNJ0scMTDYmBEba8.87q",
-                "user@mail.ru", setRoleUser());
+                "user@mail.ru", setRoleUser()); // pass = user
 
         userService.save(admin);
         userService.save(user);
